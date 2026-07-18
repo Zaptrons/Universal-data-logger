@@ -7,14 +7,15 @@ class Database:
 
     This class is responsible for:
     - Connecting to the SQLite database.
-    - Creating the required tables.
-    - Storing sensor data.
-    - Reading stored records.
+    - Creating the required table.
+    - Inserting sensor data.
+    - Retrieving stored records.
+    - Performing simple database queries.
 
     Note:
         This implementation is intentionally simple because this project
-        is a learning repository for understanding the fundamentals of
-        working with databases in Python.
+        is an educational repository for learning the fundamentals of
+        working with SQLite databases in Python.
     """
 
     def __init__(self):
@@ -28,14 +29,14 @@ class Database:
         self.connection = sqlite3.connect("sensor_data.db")
         self.cursor = self.connection.cursor()
 
-        print("Database Connected.")
+        print("Database connected.")
 
     def create_table(self):
         """
         Create the sensor_data table.
 
-        The 'IF NOT EXISTS' clause prevents an error if the table has
-        already been created in a previous execution.
+        The 'IF NOT EXISTS' clause prevents an error if the table
+        already exists.
         """
 
         query = """
@@ -49,11 +50,9 @@ class Database:
         """
 
         self.cursor.execute(query)
-
-        # Save changes permanently to the database file.
         self.connection.commit()
 
-        print("Table Created.")
+        print("Table created.")
 
     def insert(self, data):
         """
@@ -68,8 +67,10 @@ class Database:
                 unit
                 timestamp
 
-        Parameterized queries (?) are used to improve safety and prevent
-        SQL injection.
+        Notes
+        -----
+        Parameterized queries (?) are used to improve safety and help
+        prevent SQL injection.
         """
 
         query = """
@@ -88,7 +89,6 @@ class Database:
             )
         )
 
-        # Commit writes the inserted record to disk.
         self.connection.commit()
 
         print("Data inserted successfully.")
@@ -100,13 +100,108 @@ class Database:
         Returns
         -------
         list
-            List of tuples representing every stored record.
+            A list of tuples containing every stored record.
         """
 
-        query = "SELECT * FROM sensor_data"
+        query = """
+        SELECT *
+        FROM sensor_data
+        """
 
         self.cursor.execute(query)
 
         rows = self.cursor.fetchall()
 
         return rows
+
+    def select_last(self):
+        """
+        Retrieve the most recently inserted record.
+
+        Returns
+        -------
+        tuple
+            The newest record.
+
+        None
+            If the table is empty.
+        """
+
+        query = """
+        SELECT *
+        FROM sensor_data
+        ORDER BY id DESC
+        LIMIT 1
+        """
+
+        self.cursor.execute(query)
+
+        row = self.cursor.fetchone()
+
+        return row
+
+    def count_all(self):
+        """
+        Count the total number of records.
+
+        Returns
+        -------
+        int
+            Total number of stored records.
+        """
+
+        query = """
+        SELECT COUNT(*)
+        FROM sensor_data
+        """
+
+        self.cursor.execute(query)
+
+        result = self.cursor.fetchone()
+
+        return result[0]
+
+    def average(self):
+        """
+        Calculate the average value of all stored measurements.
+
+        Returns
+        -------
+        float
+            Average measurement value.
+
+        Notes
+        -----
+        Returns 0 if the table is empty.
+        """
+
+        query = """
+        SELECT AVG(value)
+        FROM sensor_data
+        """
+
+        self.cursor.execute(query)
+
+        result = self.cursor.fetchone()
+
+        return round(result[0], 2) if result[0] is not None else 0
+
+    def delete_all(self):
+        """
+        Delete all records from the sensor_data table.
+
+        Notes
+        -----
+        The table structure is preserved.
+        Only the stored data is removed.
+        """
+
+        query = """
+        DELETE FROM sensor_data
+        """
+
+        self.cursor.execute(query)
+
+        self.connection.commit()
+
+        print("All records deleted.")
