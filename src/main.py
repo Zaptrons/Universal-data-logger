@@ -3,68 +3,79 @@ main.py
 
 Project Entry Point
 
-This program demonstrates a complete data logging workflow.
+This module demonstrates one complete data logging cycle.
 
 Workflow
 --------
-1. Connect to the SQLite database.
-2. Create the required table (if it does not already exist).
-3. Read a value from a virtual sensor.
-4. Collect the measurement into a standardized dictionary.
-5. Store the measurement in the database.
-6. Demonstrate the basic database query methods.
-7. Display the results on the console.
+1. Load the project configuration from a JSON file.
+2. Connect to the SQLite database.
+3. Create the required table (if it does not already exist).
+4. Create the configured sensor object.
+5. Collect one measurement.
+6. Store the measurement in the database.
+7. Retrieve and display all stored records.
 
-This file is intentionally simple because it is part of an
-educational project that teaches the fundamentals of Python,
-SQLite, and clean project structure.
+This file intentionally remains simple because the goal of this
+project is educational rather than building a production-ready
+application.
 """
 
-from sensors.temperature_sensor import TemperatureSensor
-from data_collector import DataCollector
+from config_loader import ConfigLoader
 from database.database import Database
+from data_collector import DataCollector
+from sensors.temperature_sensor import TemperatureSensor
 
 
 def main():
     """
-    Execute one complete data logging cycle.
+    Run one complete data logging cycle.
 
-    This function demonstrates how the main project components
-    work together.
+    This function coordinates the main application workflow:
+    configuration loading, sensor creation, data collection,
+    database storage, and displaying the stored records.
     """
 
-    # Create the main project objects.
-    db = Database()
-    sensor = TemperatureSensor()
+    # ---------------------------------------------------------
+    # Load project configuration.
+    # ---------------------------------------------------------
+    loader = ConfigLoader()
+    config = loader.load()
+
+    # ---------------------------------------------------------
+    # Create database using the configured database file.
+    # ---------------------------------------------------------
+    db = Database(config["database"])
+
+    # ---------------------------------------------------------
+    # Create the configured sensor.
+    # Future milestones will support multiple sensor types.
+    # ---------------------------------------------------------
+    if config["sensor"] == "Temperature":
+        sensor = TemperatureSensor()
+    else:
+        raise ValueError("Unknown sensor type.")
+
+    # ---------------------------------------------------------
+    # Collect one measurement from the sensor.
+    # ---------------------------------------------------------
     collector = DataCollector()
-
-    # Ensure the required table exists.
-    db.create_table()
-
-    # Collect one sensor measurement.
     data = collector.collect(sensor)
 
+    # ---------------------------------------------------------
     # Store the measurement.
+    # ---------------------------------------------------------
+    db.create_table()
     db.insert(data)
 
+    # ---------------------------------------------------------
     # Display all stored records.
-    print("\nAll records:")
+    # ---------------------------------------------------------
+    print("\nStored Records\n")
+
     rows = db.select_all()
 
     for row in rows:
         print(row)
-
-    # Display the latest stored record.
-    print("\nLast record:")
-    print(db.select_last())
-
-    # Display the total number of records.
-    print("\nTotal records:")
-    print(db.count_all())
-
-    # Display the average measured value.
-    print("\nAverage value:")
-    print(db.average())
 
 
 if __name__ == "__main__":

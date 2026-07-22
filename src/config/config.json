@@ -1,0 +1,5 @@
+{
+    "sensor": "Temperature",
+    "database": "sensor_data.db",
+    "sample_interval": 5
+}

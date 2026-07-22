@@ -18,7 +18,7 @@ class Database:
         working with SQLite databases in Python.
     """
 
-    def __init__(self):
+    def __init__(self,database_name):
         """
         Establish a connection to the SQLite database.
 
@@ -26,7 +26,7 @@ class Database:
         A cursor object is also created for executing SQL commands.
         """
 
-        self.connection = sqlite3.connect("sensor_data.db")
+        self.connection = sqlite3.connect("database_name")
         self.cursor = self.connection.cursor()
 
         print("Database connected.")
