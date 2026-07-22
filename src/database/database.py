@@ -26,7 +26,7 @@ class Database:
         A cursor object is also created for executing SQL commands.
         """
 
-        self.connection = sqlite3.connect("database_name")
+        self.connection = sqlite3.connect(database_name)
         self.cursor = self.connection.cursor()
 
         print("Database connected.")
