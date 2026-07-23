@@ -27,13 +27,18 @@ from sensors.temperature_sensor import TemperatureSensor
 
 
 def main():
-    """
-    Run one complete data logging cycle.
+    def main():
+        """
+        Run one complete data logging cycle.
 
-    This function coordinates the main application workflow:
-    configuration loading, sensor creation, data collection,
-    database storage, and displaying the stored records.
-    """
+        Workflow:
+        1. Load application configuration.
+        2. Create the database connection.
+        3. Create the selected sensor.
+        4. Collect sensor data.
+        5. Store the measurement.
+        6. Display all stored records.
+        """
 
     # ---------------------------------------------------------
     # Load project configuration.

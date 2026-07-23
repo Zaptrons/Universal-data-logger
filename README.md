@@ -1,16 +1,16 @@
 # Universal Data Logger
 
-A clean, modular, and extensible Python project for learning the fundamentals of data acquisition systems and embedded software architecture.
+A clean, modular, and extensible Python project for learning data acquisition systems, clean software architecture, and embedded programming concepts.
 
 ---
 
 ## Project Goal
 
-This repository is **not** intended to be a complete industrial application.
+This repository is an educational project.
 
-Its purpose is to provide small, focused, and reusable examples of the technologies commonly used in data logging systems.
+Its purpose is to demonstrate the core building blocks used in real-world data acquisition and embedded software projects while keeping the code simple, readable, and well documented.
 
-Each milestone introduces one new concept while keeping the code simple, readable, and well documented.
+Each milestone introduces one new concept without making the project unnecessarily complex.
 
 ---
 
@@ -28,6 +28,8 @@ Each milestone introduces one new concept while keeping the code simple, readabl
   - Count Records
   - Calculate Average Value
   - Delete All Records
+- ✅ JSON Configuration Loader
+- ✅ Centralized Logging System
 
 ---
 
@@ -37,19 +39,25 @@ Each milestone introduces one new concept while keeping the code simple, readabl
 Universal-data-logger/
 
 ├── src/
-│   ├── sensors/
-│   │   ├── sensor.py
-│   │   └── temperature_sensor.py
+│   ├── config/
+│   │   └── config.json
 │   │
 │   ├── database/
 │   │   └── database.py
 │   │
+│   ├── sensors/
+│   │   ├── sensor.py
+│   │   └── temperature_sensor.py
+│   │
+│   ├── config_loader.py
 │   ├── data_collector.py
+│   ├── logger.py
 │   └── main.py
 │
 ├── docs/
 ├── dashboard/
 ├── database/
+├── logger.log
 └── README.md
 ```
 
@@ -60,11 +68,13 @@ Universal-data-logger/
 - [x] Milestone 1 – Virtual Sensor
 - [x] Milestone 2 – SQLite Fundamentals
 - [x] Milestone 3 – Database Queries
-- [ ] Milestone 4 – JSON Configuration
-- [ ] Milestone 5 – Logging System
+- [x] Milestone 4 – JSON Configuration
+- [x] Milestone 5 – Logging & Configuration
 - [ ] Milestone 6 – MQTT Communication
 - [ ] Milestone 7 – REST API
 - [ ] Milestone 8 – Dashboard
+- [ ] Milestone 9 – Unit Testing
+- [ ] Milestone 10 – CI/CD
 
 ---
 
@@ -73,20 +83,49 @@ Universal-data-logger/
 This repository demonstrates the fundamentals of:
 
 - Object-Oriented Programming (OOP)
-- Interface-based Design
-- SQLite Database Operations
-- Clean Project Organization
-- Incremental Software Development
-- Git and GitHub Workflow
+- Interface-based design
+- Clean project architecture
+- SQLite database programming
+- JSON configuration files
+- Python logging
+- Incremental software development
+- Git and GitHub workflow
 
 ---
 
-## Contributions
+## Requirements
 
-Contributions, suggestions, and constructive feedback are always welcome.
+- Python 3.10+
+- SQLite (included with Python)
+
+---
+
+## How to Run
+
+Clone the repository:
+
+```bash
+git clone https://github.com/Zaptrons/Universal-data-logger.git
+```
+
+Move into the project directory:
+
+```bash
+cd Universal-data-logger
+```
+
+Run the application:
+
+```bash
+python src/main.py
+```
 
 ---
 
 ## License
 
 MIT License
+
+---
+
+Contributions, suggestions, and constructive feedback are always welcome.

@@ -1,3 +1,4 @@
+from logger import logger
 import sqlite3
 
 
@@ -25,11 +26,11 @@ class Database:
         If the database file does not exist, SQLite automatically creates it.
         A cursor object is also created for executing SQL commands.
         """
-
+        self.database_name = database_name
         self.connection = sqlite3.connect(database_name)
         self.cursor = self.connection.cursor()
 
-        print("Database connected.")
+        logger.info(f"Database connected {database_name}")
 
     def create_table(self):
         """
@@ -52,7 +53,7 @@ class Database:
         self.cursor.execute(query)
         self.connection.commit()
 
-        print("Table created.")
+        logger.info("Table created.")
 
     def insert(self, data):
         """
@@ -91,7 +92,7 @@ class Database:
 
         self.connection.commit()
 
-        print("Data inserted successfully.")
+        logger.info("Data inserted successfully.")
 
     def select_all(self):
         """
@@ -110,9 +111,9 @@ class Database:
 
         self.cursor.execute(query)
 
-        rows = self.cursor.fetchall()
+        return self.cursor.fetchall()
 
-        return rows
+        
 
     def select_last(self):
         """
@@ -136,9 +137,9 @@ class Database:
 
         self.cursor.execute(query)
 
-        row = self.cursor.fetchone()
+        return self.cursor.fetchone()
 
-        return row
+
 
     def count_all(self):
         """
@@ -204,4 +205,4 @@ class Database:
 
         self.connection.commit()
 
-        print("All records deleted.")
+        logger.info("All records deleted.")

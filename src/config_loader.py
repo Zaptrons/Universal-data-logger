@@ -12,7 +12,7 @@ Python files.
 """
 
 import json
-
+from logger import logger
 
 class ConfigLoader:
     """
@@ -21,16 +21,18 @@ class ConfigLoader:
 
     def load(self):
         """
-        Read the configuration file and return its contents.
+            Load the application configuration.
 
-        Returns
-        -------
-        dict
-            Dictionary containing all configuration values
-            defined in config.json.
+            Returns
+            -------
+            dict
+                Parsed JSON configuration.
         """
-
-        with open("src/config/config.json", "r") as file:
-            config = json.load(file)
-
-        return config
+        try:
+            with open("src/config/config.json", "r") as file:
+                config = json.load(file)
+                logger.info("Configuration loaded.")
+                return config
+            
+        except FileNotFoundError:
+            logger.exception("Configuration file not found.")

@@ -1,0 +1,54 @@
+2026-07-22 23:57:55,203 - INFO - Database connected.
+2026-07-23 05:10:37,261 - INFO - Database connected.
+2026-07-23 05:18:55,171 - INFO - Database connected.
+2026-07-23 05:18:55,172 - INFO - Table created.
+2026-07-23 05:18:55,252 - INFO - Data inserted successfully.
+2026-07-23 05:19:13,699 - INFO - Database connected.
+2026-07-23 05:19:13,700 - INFO - Table created.
+2026-07-23 05:19:13,784 - INFO - Data inserted successfully.
+2026-07-23 09:59:25,679 - INFO - Configuration loaded.
+2026-07-23 09:59:25,680 - INFO - Database connected.
+2026-07-23 09:59:25,681 - INFO - Table created.
+2026-07-23 09:59:25,757 - INFO - Data inserted successfully.
+2026-07-23 09:59:58,069 - INFO - Configuration loaded.
+2026-07-23 09:59:58,071 - INFO - Database connected.
+2026-07-23 09:59:58,071 - INFO - Table created.
+2026-07-23 09:59:58,149 - INFO - Data inserted successfully.
+2026-07-23 11:41:14,900 - INFO - Configuration loaded.
+2026-07-23 11:41:14,902 - INFO - Database connected.
+2026-07-23 11:41:14,902 - INFO - Table created.
+2026-07-23 11:41:14,984 - INFO - Data inserted successfully.
+2026-07-23 14:03:42,201 - INFO - Configuration loaded.
+2026-07-23 14:03:42,201 - INFO - Database connected.
+2026-07-23 14:03:42,201 - INFO - Table created.
+2026-07-23 14:03:42,295 - INFO - Data inserted successfully.
+2026-07-23 20:11:11,796 - INFO - Configuration loaded.
+2026-07-23 20:11:11,797 - INFO - Database connected.
+2026-07-23 20:11:11,797 - INFO - Table created.
+2026-07-23 20:11:11,883 - INFO - Data inserted successfully.
+2026-07-23 20:13:49,028 - INFO - Configuration loaded.
+2026-07-23 20:13:49,028 - INFO - Database connected sensor_data.db
+2026-07-23 20:13:49,028 - INFO - Table created.
+2026-07-23 20:13:49,124 - INFO - Data inserted successfully.
+2026-07-23 20:29:33,054 - INFO - Configuration loaded.
+2026-07-23 20:29:33,056 - INFO - Database connected sensor_data.db
+2026-07-23 20:29:33,056 - INFO - Table created.
+2026-07-23 20:29:33,162 - INFO - Data inserted successfully.
+2026-07-23 20:30:01,091 - ERROR - Configuration file not found.
+Traceback (most recent call last):
+  File "h:\Git Hub\Zaptrons\Universal-data-logger\src\config_loader.py", line 33, in load
+    with open("src/config/config.json", "r") as file:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: 'src/config/config.json'
+2026-07-23 20:30:54,032 - INFO - Configuration loaded.
+2026-07-23 20:30:54,032 - INFO - Database connected sensor_data.db
+2026-07-23 20:30:54,032 - INFO - Table created.
+2026-07-23 20:30:54,126 - INFO - Data inserted successfully.
+2026-07-23 20:51:48,091 | INFO | logger | Configuration loaded.
+2026-07-23 20:51:48,093 | INFO | logger | Database connected sensor_data.db
+2026-07-23 20:51:48,093 | INFO | logger | Table created.
+2026-07-23 20:51:48,174 | INFO | logger | Data inserted successfully.
+2026-07-23 23:44:57,212 | INFO | logger | Configuration loaded.
+2026-07-23 23:44:57,212 | INFO | logger | Database connected sensor_data.db
+2026-07-23 23:44:57,223 | INFO | logger | Table created.
+2026-07-23 23:44:57,317 | INFO | logger | Data inserted successfully.
